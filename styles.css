@@ -1,0 +1,336 @@
+:root{
+  --cream:#F5ECCF;
+  --pink:#F585C7;
+  --olive:#536A26;
+  --sage:#AFC381;
+  --blue:#C6D7E4;
+  --purple:#b78fdc;
+  --ink:#1c1a14;
+  /* Nuevas fuentes aplicadas */
+  --font-display:'Syne', sans-serif;
+  --font-body:'Plus Jakarta Sans', sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+}
+.page {
+  max-width: 1040px; /* Lo subimos de 920px a 1040px */
+  margin: 0 auto; 
+  padding: 48px 32px 100px; 
+  position: relative;
+}
+/* ---------- reveal helpers (entran Y salen con el scroll) ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(50px) scale(.97);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.in{opacity:1; transform:translateY(0) scale(1);}
+.reveal-left{opacity:0; transform:translateX(-60px); transition:opacity .8s ease, transform .8s ease;}
+.reveal-left.in{opacity:1; transform:translateX(0);}
+.reveal-right{opacity:0; transform:translateX(60px); transition:opacity .8s ease, transform .8s ease;}
+.reveal-right.in{opacity:1; transform:translateX(0);}
+
+/* ---------- HERO (Corregido con fondo SVG nativo y espaciado) ---------- */
+.hero {
+  position: relative;
+  /* Subimos el padding-left a 320px para dar un margen seguro */
+  padding: 80px 64px 56px 320px; 
+  min-height: 440px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  
+  background-image: url('images/Asset 9.svg');
+  background-size: 100% 100%; 
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.badge{
+  display:inline-block;
+  background:var(--sage);
+  color:var(--ink);
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.85rem;
+  letter-spacing:.04em;
+  padding:12px 26px;
+  border-radius:20px;
+  position:absolute;
+  top:-14px; right:40px;
+  z-index:1;
+}
+.photo-wrap {
+  position: absolute;
+  left: 15px; /* Lo pegamos un poco más al borde izquierdo rosa */
+  top: 75px;  /* Lo bajamos un poquito para centrarlo verticalmente */
+  width: 290px; 
+  height: 290px;
+}
+
+.circle-blue{
+  position:absolute;
+  inset:0;
+  background:var(--blue);
+  border-radius:50% 50% 50% 0;
+}
+.circle-purple {
+  position: absolute;
+  left: 20px; 
+  top: 20px;
+  width: 250px; /* Bajó de 300px a 250px */
+  height: 250px; /* Bajó de 300px a 250px */
+  background: var(--purple);
+  border-radius: 50%;
+  border: 0px solid rgba(0,0,0,.15);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  color: rgba(0,0,0,.4);
+  font-size: .8rem;
+  text-align: center;
+  padding: 25px;
+  overflow: hidden;
+}
+
+.circle-purple img{width:100%; height:100%; object-fit:cover; border-radius:50%;}
+.deco-flower{position:absolute; top:22px; right:24px; width:64px; height:64px; z-index:1;}
+.deco-ribbon{position:absolute; left:50px; bottom:-16px; width:38px; height:56px; z-index:1;}
+.hero-text h1{
+  font-family:var(--font-display);
+  font-weight:800; /* Extra bold para que la nueva tipografía Syne resalte brutal */
+  font-size:clamp(2.6rem, 6vw, 4.2rem);
+  line-height:1.02;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- animación de "Ela Martinez" letra por letra ---------- */
+.split-name{ overflow:hidden; }
+.split-name .line{ display:block; }
+.split-name .letter{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(40px) rotate(6deg);
+  animation:letterIn .7s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes letterIn{
+  to{ opacity:1; transform:translateY(0) rotate(0); }
+}
+@media (prefers-reduced-motion: reduce){
+  .split-name .letter{ animation:none; opacity:1; transform:none; }
+}
+
+.hero-text p{
+  margin-top:20px; 
+  max-width:460px; 
+  font-size:.95rem; 
+  line-height:1.6;
+  font-weight: 500;
+}
+
+/* ---------- CONTACT BAR ---------- */
+.contact-bar{
+  margin-top:32px;
+  background:var(--olive);
+  color:#f3ead0;
+  border-radius:16px;
+  padding:18px 40px;
+  display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between;
+  font-size:.92rem; font-weight:500;
+}
+
+/* ---------- SECTION: shared ---------- */
+.section{position:relative; margin-top:100px;}
+.section-label{
+  display:inline-block;
+  background:var(--blue);
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.15rem;
+  padding:16px 32px;
+  border-radius:20px;
+  margin-bottom:36px;
+}
+
+/* ---------- EDUCACIÓN + SOFTWARES ---------- */
+.edu-block{
+  position:relative;
+  background:var(--pink);
+  border-radius:24px;
+  padding:44px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+}
+.edu-col .pill{
+  display:inline-block;
+  background:var(--blue);
+  font-family:var(--font-display);
+  font-weight:700; font-size:1.05rem; padding:10px 22px; border-radius:16px; margin-bottom:18px;
+}
+.edu-item{font-size:.9rem; line-height:1.55;}
+.edu-item strong{display:block; font-size:1rem; margin-bottom:4px;}
+.skill-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-size:.9rem; font-weight:600;}
+.dots{display:flex; gap:6px;}
+.dot{width:10px; height:10px; border-radius:50%; border:1.5px solid var(--ink);}
+.dot.filled{background:var(--ink);}
+
+/* ---------- SECCIÓN PROYECTOS (Alineación y Estructura Corregida) ---------- */
+.project-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Forzamos dos columnas simétricas */
+  gap: 48px;
+  align-items: center; /* Centramos el texto verticalmente con la imagen */
+  margin-bottom: 110px;
+  width: 100%;
+}
+
+/* Intercambio de orden dinámico para proyectos pares */
+.project-card:nth-child(even) .project-img,
+.project-card:nth-child(even) .project-gallery {
+  order: 2; 
+}
+
+/* Contenedor individual de la imagen del proyecto */
+.project-img {
+  aspect-ratio: 4/3;
+  background: var(--blue);
+  border-radius: 20px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px;
+  width: 100%;
+  max-width: 380px; /* Evita que la imagen se vea gigante */
+  margin: 0 auto; /* La centra limpiamente en su columna */
+}
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Para ver tus mockups completos sin que nada se corte */
+}
+
+/* Bloque de texto para proyectos destacados */
+.project-text h4 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.project-text p {
+  font-size: .9rem;
+  line-height: 1.6;
+  opacity: .85;
+}
+
+/* ---------- GALERÍA DE 3 IMÁGENES (TIKI UVA) ---------- */
+.project-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 380px; /* Misma medida que los contenedores individuales */
+  margin: 0 auto; /* La centra en su columna */
+}
+
+/* Imagen grande de la galería */
+.gallery-main {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--blue);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Miniaturas de abajo */
+.gallery-thumbs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.gallery-thumbs img {
+  width: 100%;
+  aspect-ratio: 1/1; /* Cuadradas y simétricas */
+  background: var(--blue);
+  border-radius: 12px;
+  object-fit: contain;
+  padding: 8px;
+}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  position:relative;
+  margin-top:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+  text-align:center;
+}
+.pill-sage{
+  background:var(--sage);
+  font-family:var(--font-display);
+  font-weight:700;
+  padding:12px 24px;
+  border-radius:16px;
+}
+.lang{font-size:.9rem;}
+.lang strong{
+  font-family:var(--font-display);
+  margin-right:8px;
+}
+.deco-sprout{
+  position:absolute;
+  right:0;
+  bottom:-30px;
+  width:46px;
+  height:46px;
+}
+
+@media(max-width:720px){
+  .hero{
+    padding-left:48px; 
+    padding-top:340px;
+    background-size: cover; /* Cambia a cover en móviles para adaptarse bien */
+  }
+  .photo-wrap{left:50%; transform:translateX(-50%); top:0;}
+  .badge{position:static; display:inline-block; margin-bottom:16px;}
+  .edu-block{grid-template-columns:1fr;}
+  .project-card, .project-card:nth-child(even){
+    grid-template-columns:1fr;
+    gap: 24px;
+  }
+  .project-card:nth-child(even) .project-img,
+  .project-card:nth-child(even) .project-gallery {
+    order: 0;
+  }
+  .star-pink, .star-blue{display:none;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal, .reveal-left, .reveal-right{transition:none; opacity:1; transform:none;}
+}
