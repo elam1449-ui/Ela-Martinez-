@@ -47,7 +47,7 @@ body{
   justify-content: center;
   overflow: visible;
   
-  background-image: url('Asset 9.svg');
+  background-image: url('./Asset 9.svg');
   background-size: 100% 100%; 
   background-repeat: no-repeat;
   background-position: center;
